@@ -48,7 +48,7 @@ class PersonsView: UIView {
     
     let counterLabel: UILabel = {
         let label = UILabel()
-        label.text = "0"
+        label.text = "1"
         label.textAlignment = .center
         label.textColor = .black
         label.font = UIFont(name: "Arial Bold", size: 48)

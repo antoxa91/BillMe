@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C57A249F28B4D4E500F14C3C /* TipsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A249E28B4D4E500F14C3C /* TipsCollectionViewCell.swift */; };
+		C57A24A528B4D63700F14C3C /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A24A428B4D63700F14C3C /* TipsView.swift */; };
 		C57A3DB928B4C24B00C0498E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A3DB828B4C24B00C0498E /* AppDelegate.swift */; };
 		C57A3DBB28B4C24B00C0498E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57A3DBA28B4C24B00C0498E /* SceneDelegate.swift */; };
 		C57A3DC228B4C24C00C0498E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57A3DC128B4C24C00C0498E /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C57A249E28B4D4E500F14C3C /* TipsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C57A24A428B4D63700F14C3C /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		C57A3DB528B4C24B00C0498E /* BillMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BillMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57A3DB828B4C24B00C0498E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C57A3DBA28B4C24B00C0498E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +43,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C57A24A028B4D4EA00F14C3C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C57A3DB828B4C24B00C0498E /* AppDelegate.swift */,
+				C57A3DBA28B4C24B00C0498E /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C57A24A128B4D4FD00F14C3C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C57A3DCE28B4C29D00C0498E /* MainViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C57A24A228B4D51400F14C3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C57A24A328B4D52900F14C3C /* Cells */,
+				C57A3DCC28B4C29D00C0498E /* TotalBillView.swift */,
+				C57A3DCD28B4C29D00C0498E /* PersonsView.swift */,
+				C57A24A428B4D63700F14C3C /* TipsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C57A24A328B4D52900F14C3C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C57A249E28B4D4E500F14C3C /* TipsCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C57A3DAC28B4C24B00C0498E = {
 			isa = PBXGroup;
 			children = (
@@ -58,11 +98,9 @@
 		C57A3DB728B4C24B00C0498E /* BillMe */ = {
 			isa = PBXGroup;
 			children = (
-				C57A3DB828B4C24B00C0498E /* AppDelegate.swift */,
-				C57A3DBA28B4C24B00C0498E /* SceneDelegate.swift */,
-				C57A3DCE28B4C29D00C0498E /* MainViewController.swift */,
-				C57A3DCC28B4C29D00C0498E /* TotalBillView.swift */,
-				C57A3DCD28B4C29D00C0498E /* PersonsView.swift */,
+				C57A24A028B4D4EA00F14C3C /* Application */,
+				C57A24A128B4D4FD00F14C3C /* Controllers */,
+				C57A24A228B4D51400F14C3C /* Views */,
 				C57A3DC128B4C24C00C0498E /* Assets.xcassets */,
 				C57A3DC328B4C24C00C0498E /* LaunchScreen.storyboard */,
 				C57A3DC628B4C24C00C0498E /* Info.plist */,
@@ -143,6 +181,8 @@
 				C57A3DCF28B4C29D00C0498E /* TotalBillView.swift in Sources */,
 				C57A3DD028B4C29D00C0498E /* PersonsView.swift in Sources */,
 				C57A3DD128B4C29D00C0498E /* MainViewController.swift in Sources */,
+				C57A249F28B4D4E500F14C3C /* TipsCollectionViewCell.swift in Sources */,
+				C57A24A528B4D63700F14C3C /* TipsView.swift in Sources */,
 				C57A3DB928B4C24B00C0498E /* AppDelegate.swift in Sources */,
 				C57A3DBB28B4C24B00C0498E /* SceneDelegate.swift in Sources */,
 			);
