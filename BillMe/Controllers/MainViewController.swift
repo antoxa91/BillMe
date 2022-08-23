@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
         label.minimumScaleFactor = 0.7
         label.numberOfLines = 2
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true //подгонять размер текста под ширину
+        label.adjustsFontSizeToFitWidth = true 
         return label
     }()
     
@@ -49,6 +49,7 @@ class MainViewController: UIViewController {
         button.backgroundColor = #colorLiteral(red: 0.6393250823, green: 0.2680583298, blue: 0.7918022871, alpha: 1)
         button.titleLabel?.font = UIFont(name: "Arial", size: 20)
         button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(calculateButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -58,6 +59,7 @@ class MainViewController: UIViewController {
         
         setupViews()
         setConstraints()
+        addTap()
     }
     
     
@@ -71,6 +73,29 @@ class MainViewController: UIViewController {
         view.addSubview(personsView)
         view.addSubview(calculateButton)
         view.addSubview(tipsView)
+    }
+    
+    @objc func calculateButtonTapped() {
+        guard let totalBill = totalBillView.sumTextField.text,
+              let totalBillDouble = Double(totalBill) else { return }
+        
+        let summ = totalBillDouble + totalBillDouble * tipsView.tipsCount / 100
+        let persons = Double(personsView.counter)
+        let result = String(format: "%.2f", summ/persons)
+        descriptionLabel.text = "\(result) на человека"
+        descriptionLabel.font = UIFont(name: "Arial Bold", size: 20)
+        descriptionLabel.textColor = #colorLiteral(red: 0.5855548382, green: 0.1616748869, blue: 0.4218605161, alpha: 1)
+    }
+    
+    //чтобы скрыть клавиатуру нажав в пустом месте
+    func addTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false //чтоб ячейки работали после скрытия клавы
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -111,7 +136,6 @@ extension MainViewController {
             calculateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             calculateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             calculateButton.heightAnchor.constraint(equalToConstant: 60),
-            
         ])
     }
 }

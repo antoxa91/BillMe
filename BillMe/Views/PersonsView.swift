@@ -31,7 +31,9 @@ class PersonsView: UIView {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
         button.setImage(UIImage(systemName: "minus", withConfiguration: largeConfig), for: .normal)
         button.tintColor = #colorLiteral(red: 0.4510066509, green: 0.4966486692, blue: 0.5633206367, alpha: 1)
+        button.isEnabled = false
         button.titleLabel?.font = UIFont(name: "Arial", size: 60)
+        button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -42,6 +44,8 @@ class PersonsView: UIView {
         button.setImage(UIImage(systemName: "plus", withConfiguration: largeConfig), for: .normal)
         button.tintColor = #colorLiteral(red: 0.4510066509, green: 0.4966486692, blue: 0.5633206367, alpha: 1)
         button.titleLabel?.font = UIFont(name: "Arial", size: 60)
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
+
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -55,6 +59,8 @@ class PersonsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    var counter = 1
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -75,6 +81,21 @@ class PersonsView: UIView {
         backgroundGrayView.addSubview(minusButton)
         backgroundGrayView.addSubview(plusButton)
         backgroundGrayView.addSubview(counterLabel)
+    }
+    
+    @objc func minusButtonTapped() {
+        counter -= 1
+        counterLabel.text = "\(counter)"
+        
+        if counter == 1 {
+            minusButton.isEnabled = false
+        }
+    }
+    
+    @objc func plusButtonTapped() {
+        counter += 1
+        counterLabel.text = "\(counter)"
+        minusButton.isEnabled = true
     }
     
     func setConstraints() {

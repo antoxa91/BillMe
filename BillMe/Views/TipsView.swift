@@ -28,6 +28,7 @@ class TipsView: UIView {
     }()
     
     let tipsPercentArray = ["0%", "10%", "15%", "20%", "25%", "30%"]
+    var tipsCount: Double = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,7 +74,8 @@ extension TipsView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension TipsView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let currentPercentString = tipsPercentArray[indexPath.row].dropLast()
+        tipsCount = Double(currentPercentString) ?? 0
     }
 }
 
