@@ -19,7 +19,7 @@ class MainViewController: UIViewController {
     }()
     
     let logoImageView: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -29,12 +29,11 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.text = "Введите сумму счета и нажмите \"Посчитать\""
         label.textColor = .black
-        label.font = UIFont(name: "Arial Bold", size: 15)
+        label.font = UIFont(name: "Arial Bold", size: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.minimumScaleFactor = 0.7
-        label.numberOfLines = 2
+        label.minimumScaleFactor = 0.6
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true 
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -82,9 +81,15 @@ class MainViewController: UIViewController {
         let summ = totalBillDouble + totalBillDouble * tipsView.tipsCount / 100
         let persons = Double(personsView.counter)
         let result = String(format: "%.2f", summ/persons)
+        
         descriptionLabel.text = "\(result) на человека"
         descriptionLabel.font = UIFont(name: "Arial Bold", size: 20)
         descriptionLabel.textColor = #colorLiteral(red: 0.5855548382, green: 0.1616748869, blue: 0.4218605161, alpha: 1)
+        
+        UIView.animate(withDuration: 1, delay: 0.1, options: [.curveEaseOut], animations: {
+            self.calculateButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+            self.calculateButton.transform = .identity
+        }, completion: nil)
     }
     
     //чтобы скрыть клавиатуру нажав в пустом месте
@@ -126,7 +131,7 @@ extension MainViewController {
             personsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             personsView.heightAnchor.constraint(equalToConstant: 130),
             
-           
+            
             tipsView.topAnchor.constraint(equalTo: personsView.bottomAnchor, constant: 10),
             tipsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             tipsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
