@@ -88,7 +88,7 @@ class PersonsView: UIView {
         counter -= 1
         counterLabel.text = "\(counter)"
         
-        if counter == 1 {
+        if counter <= 1 {
             minusButton.isEnabled = false
         }
     }
