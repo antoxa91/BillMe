@@ -13,7 +13,6 @@ class PersonsView: UIView {
         let label = UILabel()
         label.text = "Количество персон"
         label.textColor = #colorLiteral(red: 0.2454499006, green: 0.2894837558, blue: 0.3496103287, alpha: 1)
-        label.font = UIFont(name: "Arial", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -26,13 +25,11 @@ class PersonsView: UIView {
         return view
     }()
     
+    let configForButton = UIImage.SymbolConfiguration(pointSize: 26, weight: .bold, scale: .large)
     lazy var minusButton: UIButton = {
         let button = UIButton(type: .system)
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: "minus", withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: "minus", withConfiguration: configForButton), for: .normal)
         button.tintColor = #colorLiteral(red: 0.4510066509, green: 0.4966486692, blue: 0.5633206367, alpha: 1)
-        button.isEnabled = false
-        button.titleLabel?.font = UIFont(name: "Arial", size: 60)
         button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -40,10 +37,8 @@ class PersonsView: UIView {
     
     lazy var plusButton: UIButton = {
         let button = UIButton(type: .system)
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 35, weight: .bold, scale: .large)
-        button.setImage(UIImage(systemName: "plus", withConfiguration: largeConfig), for: .normal)
+        button.setImage(UIImage(systemName: "plus", withConfiguration: configForButton), for: .normal)
         button.tintColor = #colorLiteral(red: 0.4510066509, green: 0.4966486692, blue: 0.5633206367, alpha: 1)
-        button.titleLabel?.font = UIFont(name: "Arial", size: 60)
         button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
 
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -52,15 +47,14 @@ class PersonsView: UIView {
     
     let counterLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
+        label.text = "2"
         label.textAlignment = .center
         label.textColor = .black
-        label.font = UIFont(name: "Arial Bold", size: 48)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    var counter = 1
+    var counter = 2
  
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -73,7 +67,14 @@ class PersonsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        titleLabel.font = UIFont(name: "Arial", size: frame.width/20)
+        counterLabel.font = UIFont(name: "Arial Bold", size: frame.height/2.5)
+    }
+    
+    private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(titleLabel)
@@ -98,25 +99,26 @@ class PersonsView: UIView {
         minusButton.isEnabled = true
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-           
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            
             backgroundGrayView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
-            backgroundGrayView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            backgroundGrayView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            backgroundGrayView.heightAnchor.constraint(equalToConstant: 100),
+            backgroundGrayView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundGrayView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundGrayView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            minusButton.topAnchor.constraint(equalTo: backgroundGrayView.topAnchor, constant: 0),
-            minusButton.leadingAnchor.constraint(equalTo: backgroundGrayView.leadingAnchor, constant: 0),
+            minusButton.topAnchor.constraint(equalTo: backgroundGrayView.topAnchor),
+            minusButton.leadingAnchor.constraint(equalTo: backgroundGrayView.leadingAnchor),
             minusButton.heightAnchor.constraint(equalTo: backgroundGrayView.heightAnchor),
-            minusButton.widthAnchor.constraint(equalToConstant: 80),
+            minusButton.widthAnchor.constraint(equalToConstant: 70),
             
-            plusButton.topAnchor.constraint(equalTo: backgroundGrayView.topAnchor, constant: 0),
-            plusButton.trailingAnchor.constraint(equalTo: backgroundGrayView.trailingAnchor, constant: 0),
+            plusButton.topAnchor.constraint(equalTo: backgroundGrayView.topAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: backgroundGrayView.trailingAnchor),
             plusButton.heightAnchor.constraint(equalTo: backgroundGrayView.heightAnchor),
-            plusButton.widthAnchor.constraint(equalToConstant: 80),
+            plusButton.widthAnchor.constraint(equalToConstant: 70),
             
             counterLabel.centerYAnchor.constraint(equalTo: backgroundGrayView.centerYAnchor),
             counterLabel.leadingAnchor.constraint(equalTo: minusButton.trailingAnchor, constant: 10),

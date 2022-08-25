@@ -13,7 +13,6 @@ class TotalBillView: UIView {
         let label = UILabel()
         label.text = "Общий счет"
         label.textColor = #colorLiteral(red: 0.2454499006, green: 0.2894837558, blue: 0.3496103287, alpha: 1)
-        label.font = UIFont(name: "Arial", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -24,7 +23,6 @@ class TotalBillView: UIView {
         textField.layer.cornerRadius = 10
         textField.textColor = .black
         textField.tintColor = #colorLiteral(red: 0.6393250823, green: 0.2680583298, blue: 0.7918022871, alpha: 1)
-        textField.font = UIFont(name: "Arial Bold", size: 48)
         textField.textAlignment = .center
         textField.keyboardType = .numberPad
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -42,22 +40,30 @@ class TotalBillView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        titleLabel.font = UIFont(name: "Arial", size: frame.width/20)
+        sumTextField.font = UIFont(name: "Arial Bold", size: frame.height/2.5)
+    }
+    
+    private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(titleLabel)
         addSubview(sumTextField)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+
             sumTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
             sumTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            sumTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            sumTextField.heightAnchor.constraint(equalToConstant: 100)
+            sumTextField.trailingAnchor.constraint(equalTo: trailingAnchor),
+            sumTextField.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }

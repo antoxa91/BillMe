@@ -13,7 +13,6 @@ class TipsView: UIView {
         let label = UILabel()
         label.text = "Чаевые"
         label.textColor = #colorLiteral(red: 0.2454499006, green: 0.2894837558, blue: 0.3496103287, alpha: 1)
-        label.font = UIFont(name: "Arial", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -22,6 +21,7 @@ class TipsView: UIView {
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
@@ -42,7 +42,13 @@ class TipsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        titleLabel.font = UIFont(name: "Arial", size: frame.width/20)
+    }
+    
+    private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(titleLabel)
@@ -50,7 +56,7 @@ class TipsView: UIView {
         collectionView.register(TipsCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
-    func setDelegates() {
+    private func setDelegates() {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -82,22 +88,23 @@ extension TipsView: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension TipsView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: collectionView.frame.width/4.5,
-               height: collectionView.frame.width/4.5)
+        CGSize(width: collectionView.frame.width/5,
+               height: collectionView.frame.width/5)
     }
 }
 
 // MARK: - Constraints
 extension TipsView {
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20),
             
             collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 100),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 }
