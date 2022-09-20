@@ -1,8 +1,4 @@
 # BillMe
-___
-
-### Overview
-___
 
 Calculation of the amount to pay per person depending on the number of people and the total amount (+% tip)
 
