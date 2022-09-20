@@ -1,5 +1,15 @@
 # BillMe
+___
+
+### Overview
+___
+
 Calculation of the amount to pay per person depending on the number of people and the total amount (+% tip)
 
++ UIKit
++ Auto Layout
++ UICollectionView
++ Animate
 
-![Simulator Screen Shot - iPhone 12 Pro Max - 2022-08-25 at 17 48 31](https://user-images.githubusercontent.com/69522563/186669352-abe2926f-6cab-4faf-9a3d-e06d5f5e4cdb.png)
+![start](https://user-images.githubusercontent.com/69522563/191186103-260b91d6-c526-4887-9959-dfad0aea427d.gif) ![calculate](https://user-images.githubusercontent.com/69522563/191186111-c660cf90-77d8-4490-8906-415baaaf4635.gif)
+
